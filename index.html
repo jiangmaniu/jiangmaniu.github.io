@@ -323,6 +323,116 @@
 
 
   
+    <article id="post-es6-module-and-build" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/10/es6-module-and-build/">ES6 的模块化使用和开发环境的打包</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/10/es6-module-and-build/" class="archive-article-date">
+  	<time datetime="2019-10-10T08:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ES6-的模块化使用和开发环境的打包"><a href="#ES6-的模块化使用和开发环境的打包" class="headerlink" title="ES6 的模块化使用和开发环境的打包"></a>ES6 的模块化使用和开发环境的打包</h1><h2 id="模块化基本语法"><a href="#模块化基本语法" class="headerlink" title="模块化基本语法"></a>模块化基本语法</h2><h3 id="导出模块语法-export"><a href="#导出模块语法-export" class="headerlink" title="导出模块语法 export"></a>导出模块语法 <code>export</code></h3><p><code>export</code>是一个将魔模块导出的命令，可导出函数、类和变量等数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导出类</span></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Zoom</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> x = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">fn1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'fn1'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>个人将以上代码理解为多模块导出，就是在一个模块文件中，可以导出多个模块，供其他模块调用。上面的代码导出方式也可写为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 导出类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zoom</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出变量</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'fn1'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; Zoom, x, fn1 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可通过导出一个对象集合的方式，导出多个模块，虽然上面两种写法不同，但本质上是一样的。模块导出时，默认导出的模块名与为变量名，也可在导出时使用 <code>as</code> 自定义模块名，<code>as</code> 语法的左边表示要导出的变量，右边表示导出的重命名。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x1</span> (<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x2</span> (<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  x1 <span class="keyword">as</span> y1,</span><br><span class="line">  x2 <span class="keyword">as</span> y2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，导出变量<code>x1</code>和<code>x2</code>时，分别将两个变量重命名为<code>y1</code>和<code>y2</code>。</p>
+<blockquote>
+<p>要注意的是<code>export</code>命令规定对外的接口，必须与模块内的变量建立一一对应关系。</p>
+</blockquote>
+<h3 id="导出默认模块-export-default"><a href="#导出默认模块-export-default" class="headerlink" title="导出默认模块 export default"></a>导出默认模块 <code>export default</code></h3><p>一个模块文件中可导出一个默认模块，通过<code>export default</code>语法将值默认的模块导出。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可理解为将数据导出时已重命名成<code>default</code>。要注意的是多模块导出与默认模块导出的引入方式不一样。</p>
+<h2 id="导入模块语法-import"><a href="#导入模块语法-import" class="headerlink" title="导入模块语法 import"></a>导入模块语法 <code>import</code></h2><p>使用<code>import</code>命令可引入已导出的模块代码，引入后即可直接使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> x1 = <span class="number">1</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> x2 = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// import.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; x1, x2 &#125; <span class="keyword">from</span> <span class="string">'export.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(x1, x2) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<p>在引入时，可使用<code>as</code>命令，将引入的模块重命名，重命名后的变量只会影响当前引入的模块文件，不会对导出模块文件及其他引入文件有影响。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接上面代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; x1 <span class="keyword">as</span> y1, x2 <span class="keyword">as</span> y2 &#125; <span class="keyword">from</span> <span class="string">'export.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(y1, y2) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<p>引入默认导出的模块，不需要加大括号，直接输入自定义的变量名可将默认的模块重命名导入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'default module'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// import.js</span></span><br><span class="line"><span class="keyword">import</span> fn <span class="keyword">from</span> <span class="string">'export.js'</span></span><br><span class="line">fn() <span class="comment">// 'default module'</span></span><br></pre></td></tr></table></figure>
+
+<p>多模块引入和默认模块引入主要的区别是，默认模块不需要加大括号，且一个导出文件中只有一个默认导出模块。而多模块导出顾名思义一个模块文件可导出多个模块，引入时，需要将模块名写在大括号中<code>{}</code>。默认模块引入可与多模块引入同时进行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> x1 = <span class="number">1</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'default module'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// import.js</span></span><br><span class="line"><span class="keyword">import</span> fn, &#123; x1 <span class="keyword">as</span> y1 &#125; <span class="keyword">from</span> <span class="string">'export.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(y1) <span class="comment">// 1</span></span><br><span class="line">fn() <span class="comment">// 'default module'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h2><h2 id="模块化标准"><a href="#模块化标准" class="headerlink" title="模块化标准"></a>模块化标准</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/10/es6-module-and-build/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-interview-basis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
