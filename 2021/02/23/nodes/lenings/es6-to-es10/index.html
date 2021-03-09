@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>Tag: 面试 | 江麻妞的个人博客</title>
+  <title>ES6 到 ES10 新特性学习 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江麻妞的个人博客">
-<meta property="og:url" content="https://jiangmaniu.github.io/tags/面试/index.html">
+  <meta name="description" content="ES6 到 ES10 新特性学习">
+<meta name="keywords" content="学习笔记,ES6,ES7,ES8,ES9,ES10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 到 ES10 新特性学习">
+<meta property="og:url" content="https://jiangmaniu.github.io/2021/02/23/nodes/lenings/es6-to-es10/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
+<meta property="og:description" content="ES6 到 ES10 新特性学习">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangmaniu.github.io/2021/02/23/nodes/lenings/es6-to-es10/1.png">
+<meta property="og:updated_time" content="2021-03-09T15:34:11.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="江麻妞的个人博客">
+<meta name="twitter:title" content="ES6 到 ES10 新特性学习">
+<meta name="twitter:description" content="ES6 到 ES10 新特性学习">
+<meta name="twitter:image" content="https://jiangmaniu.github.io/2021/02/23/nodes/lenings/es6-to-es10/1.png">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -142,36 +149,145 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nodes/lenings/es6-to-es10" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/15/nodes/lenings/es6-module-and-build/" class="archive-article-date">
-  	<time datetime="2020-10-15T08:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/nodes/lenings/es6-module-and-build/">ES6 的模块化使用和开发环境的打包</a>
+    <h1 class="article-title" itemprop="name">
+      ES6 到 ES10 新特性学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/02/23/nodes/lenings/es6-to-es10/" class="archive-article-date">
+  	<time datetime="2021-02-22T16:33:51.670Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ES6篇"><a href="#ES6篇" class="headerlink" title="ES6篇"></a>ES6篇</h1><p>该篇会讲述ES6的所有新特性，并且会复习ES6以前的相同知识</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>作用域从JS的层面分析有四个作用域：</p>
+<h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><h4 id="全局作用域解释"><a href="#全局作用域解释" class="headerlink" title="全局作用域解释"></a>全局作用域解释</h4><p>在全局作用域声明的变量（全局变量）可以在程序的任何地方都可以访问，也可以通过 <code>window</code> 对象的属性访问</p>
+<a id="more"></a>
+
+<h4 id="如何定义全局变量"><a href="#如何定义全局变量" class="headerlink" title="如何定义全局变量"></a>如何定义全局变量</h4><p>只要在函数外面定义的变量基本都叫全局变量（ES3知识）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a) <span class="comment">// 123</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：在任何地方（函数内部）未用声明语句（<code>var</code> <code>let</code> <code>const</code>）声明的变量虽然具备全局作用域，但严格意义上来讲不是全局变量，而是作为<code>window</code>（全局对象）的属性来使用。所以全局变量无法被 <code>delete</code> 删除，而未使用声明语句声明的变量则可以删除。</p>
+<p><img src="/2021/02/23/nodes/lenings/es6-to-es10/1.png" alt="1589112559607.png"></p>
+</blockquote>
+<h3 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h3><h4 id="函数作用域说明"><a href="#函数作用域说明" class="headerlink" title="函数作用域说明"></a>函数作用域说明</h4><p>在函数内部通过 <code>var</code> 关键字声明的变量，该变量只能在函数内部访问，无法在函数外部访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> a + <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test()) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// a is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h3><h3 id="动态作用域解释"><a href="#动态作用域解释" class="headerlink" title="动态作用域解释"></a>动态作用域解释</h3><p>与变量这种固定作用域不同，<code>this</code> 会根据不同的环境引用不同的对象，从而得到不同的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在全局作用域中直接调用函数（没做任何劫持绑定），则函数中的this直接指向window对象</span></span><br><span class="line">test() <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在全局作用域调用前给函数绑定一个对象，则函数中的this指向的是该绑定的对象</span></span><br><span class="line">test.bind(&#123; <span class="attr">a</span>: <span class="number">2</span> &#125;)() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="块状作用域（ES6新增）"><a href="#块状作用域（ES6新增）" class="headerlink" title="块状作用域（ES6新增）"></a>块状作用域（ES6新增）</h3><h4 id="历史说明"><a href="#历史说明" class="headerlink" title="历史说明"></a>历史说明</h4><p>在ES6之前没有块状作用域这个概念，在函数内部任何位置使用 <code>var</code> 定义的变量都会在函数执行前得到提升，使得在函数内部任何地方都能访问到该变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (a) &#123;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(b) <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+
+<h4 id="块状作用域解释"><a href="#块状作用域解释" class="headerlink" title="块状作用域解释"></a>块状作用域解释</h4><p>在 <code>{}</code> 块内部通过 <code>let</code> 和 <code>const</code> 关键字声明的变量，该变量在 <code>{}</code>块内部访问，外面无法访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (a) &#123;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(b) <span class="comment">// b is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+
+<h4 id="let-amp-const-与-var-区别"><a href="#let-amp-const-与-var-区别" class="headerlink" title="let &amp; const 与 var 区别"></a><code>let</code> &amp; <code>const</code> 与 <code>var</code> 区别</h4><p>该三个关键字的作用都是声明变量，通过 <code>var</code> 关键字声明的变量会在函数执行前声明提升，所以可以在声明语句前拿到变量的值，而通过 <code>let</code> &amp; <code>const</code> 关键字声明的变量不会得到提升，也就无法在变量声明之前拿到变量的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(varA) <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> varA = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(letA) <span class="comment">// letA is not defined</span></span><br><span class="line"><span class="keyword">let</span> letA = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(constA) <span class="comment">// constA is not defined</span></span><br><span class="line"><span class="keyword">const</span> constA = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>var</code> 关键字可以重复声明相同变量。而使用 <code>let</code> &amp; <code>const</code> 关键字无法重复声明相同变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span> <span class="comment">// error: Identifier 'b' has already been declared</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 不执行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(c) <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">2</span> <span class="comment">// error: Identifier 'c' has already been declared</span></span><br><span class="line"><span class="built_in">console</span>.log(c) <span class="comment">// 不执行</span></span><br></pre></td></tr></table></figure>
+
+<p>由于 <code>var</code> 关键字可以在声明时使变量提升特性，所以在块作用域（ <code>{}</code> ）内使用 <code>var</code> 关键字声明的变量，在 <code>var</code> 块作用域内外都可以使用。而 <code>let</code> &amp; <code>const</code> 关键字由于没有变量提升特性，所以在块作用域内声明的变量，只能在块作用域内部使用，块作用域外部无法使用该变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// error: b is not defined</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">const</span> c = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(c) <span class="comment">// error: c is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>var</code> 在全局作用域声明的变量可以直接使用变量名访问，也可以使用全局对象（ <code>window</code> ）的属性进行访问，而 <code>let</code> &amp; <code>const</code> 则只能通过变量名访问，无法通过全局对象的属性进行访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(a, <span class="built_in">window</span>.a) <span class="comment">// 1 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(b, <span class="built_in">window</span>.b) <span class="comment">// 1 undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(c, <span class="built_in">window</span>.c) <span class="comment">// 1 undefined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="let-与-const-区别"><a href="#let-与-const-区别" class="headerlink" title="let 与 const 区别"></a><code>let</code> 与 <code>const</code> 区别</h4><h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><p><code>let</code> 关键字的特性 <code>const</code> 都具备，且 <code>const</code> 拥有 <code>let</code> 不具备的特性</p>
+<p>使用 <code>let</code> 关键字声明的变量为动态变量，可以在该作用域内做任何更改。而使用 <code>const</code> 关键字声明的变量为静态变量，在声明之后无法做任何更改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line">a = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 1</span></span><br><span class="line">b = <span class="number">2</span> <span class="comment">// error: Assignment to constant variable.</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 不执行</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：在使用 <code>const</code> 关键字声明对象时，是无法改变指针的引用（也就是直接改成另一个对象），但可以改变该对象的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> obj1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(obj1) <span class="comment">// &#123; a: 1 &#125;</span></span><br><span class="line">&gt; obj1.a = <span class="number">2</span></span><br><span class="line">&gt; obj1.b = <span class="number">3</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(obj1) <span class="comment">// &#123; a: 2, b: 3 &#125;</span></span><br><span class="line">&gt; <span class="keyword">const</span> obj2 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(obj2) <span class="comment">// &#123; a: 1 &#125;</span></span><br><span class="line">&gt; obj2 = &#123; <span class="attr">a</span>: <span class="number">2</span>, <span class="attr">b</span>: <span class="number">3</span> &#125; <span class="comment">// error: Assignment to constant variable.</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(obj2) <span class="comment">// 不执行</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>let</code> 关键字可以先声明变量，后赋值。而 <code>const</code> 关键字只能在变量声明的时候赋值，并且声明之后无法做任何更改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a</span><br><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b</span><br><span class="line">b = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// error: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>数组方面知识</p>
+<h3 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h3><p>数组遍历是循环数组进行每一个元素的操作</p>
+<h4 id="ES6以前的遍历方法，以及优缺点"><a href="#ES6以前的遍历方法，以及优缺点" class="headerlink" title="ES6以前的遍历方法，以及优缺点"></a>ES6以前的遍历方法，以及优缺点</h4><h5 id="1-for-循环"><a href="#1-for-循环" class="headerlink" title="1. for 循环"></a>1. for 循环</h5><p>使用 <code>for</code> 关键字对数组进行遍历和循环</p>
+<p>优点：可以灵活的操作数组，并且可以随时使用 <code>break</code> , <code>continue</code> 等关键字跳出循环<br>缺点：写法相对来说较为复杂</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(arr[i])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1, 2, 4, 5</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-forEach-遍历"><a href="#2-forEach-遍历" class="headerlink" title="2. forEach 遍历"></a>2. forEach 遍历</h5><p>使用ES5新增 <code>forEach</code> 关键字对数组进行遍历和循环</p>
+<p>有点：写法相对简单，简洁，不需要定义变量等操作</p>
+<p>缺点：会对数组的所有元素进行遍历，并且在遍历途中无法使用 <code>break</code> , <code>continue</code> 等关键字跳出循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (index === <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(item)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// Error: Illegal continue statement: no surrounding iteration statement</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-every-遍历"><a href="#3-every-遍历" class="headerlink" title="3. every 遍历"></a>3. every 遍历</h5><p>使用ES5新增 <code>every</code> 关键字对数组进行遍历和循环</p>
+<p>特点：该遍历方法是根据每次执行的 <code>return</code> 值来决定是否继续循环，如果 <code>return</code> 的是 <code>true</code> , 则会进行下一次的循环。反之如果 <code>return</code> 的是 <code>false</code> ，则不在循环（默认 <code>return</code> : <code>false</code>  ）</p>
+<p>优点：与 <code>forEach</code> 一样，写法相对简单。虽然不支持 <code>break</code> , <code>continue</code> 等关键字跳出循环，但可以 <code>return</code> 的特性进行跳出循环</p>
+<p>缺点（也是特点）：如果要循环下一次，则需要在每次循环结束前，<code>return</code> 一个布尔值（<code>true</code>）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr.every(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (index === <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果要实现类似break的效果，则可以返回一个false，让循环终止</span></span><br><span class="line">    <span class="comment">// 如果要实现类似continue的效果，则可以在条件里面不执行任何代码</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1, 2, 3</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="4-for-in-遍历"><a href="#4-for-in-遍历" class="headerlink" title="4. for in 遍历"></a>4. for in 遍历</h5><blockquote>
+<p>注意：<code>for in</code> 本身是为对象的遍历而设计的，由于数组也是个对象，所以可以使用 <code>for in</code> 遍历数组。但由于是为对象设计的，所有遍历数组的手有瑕疵</p>
+</blockquote>
+<p>特点：<code>for in</code> 通过拿到对象的key，从而通过key拿到key对应的值，但值得注意的是，这个key是一个字符串，而不是数字。更重要的是这个key不等于数组的下标</p>
+<p>优点：可以使用 <code>for in</code> 遍历对象或数组，并且支持 <code>break</code>，<code>continue</code> 等跳出循环关键字</p>
+<p>缺点：由于key值不是数组的下标，所以key可以是数组的非下标属性，可以循环出非下标的数据。key的类型是 <code>string</code> ，而下标的类型是 <code>number</code> 所以无法直接使用 <code>===</code> 进行判断，只能使用双等，或者在判断之前将两个不同类型值转为相同类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="comment">// 由于不同类型，使用 === 无法判断成功</span></span><br><span class="line">  <span class="keyword">if</span> (index === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">break</span> <span class="comment">// 支持跳出循环语句</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(index, arr[index])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0, 1</span></span><br><span class="line"><span class="comment">// 1, 2</span></span><br><span class="line"><span class="comment">// 2, 3</span></span><br><span class="line"><span class="comment">// 3, 4</span></span><br><span class="line"><span class="comment">// 4, 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于key可以是数组非下标属性，所以也能循环显示出来</span></span><br><span class="line">arr.a = <span class="number">6</span></span><br><span class="line">arr.b = <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="comment">// 先将string类型的index转成number类型，然后在进行判断</span></span><br><span class="line">  <span class="keyword">if</span> (index * <span class="number">1</span> === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(index, arr[index])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0 1</span></span><br><span class="line"><span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 3 4</span></span><br><span class="line"><span class="comment">// 4 5</span></span><br><span class="line"><span class="comment">// a 6</span></span><br><span class="line"><span class="comment">// b 7</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="ES6新增遍历方法"><a href="#ES6新增遍历方法" class="headerlink" title="ES6新增遍历方法"></a>ES6新增遍历方法</h4><h5 id="for-of-遍历"><a href="#for-of-遍历" class="headerlink" title="for of 遍历"></a>for of 遍历</h5><p><code>for of</code> 既可以遍历数组，也可以遍历对象。可以修改默认遍历机制</p>
+<h4 id="伪数组"><a href="#伪数组" class="headerlink" title="伪数组"></a>伪数组</h4><p>概念：伪数组具备数组的一些特性（例如：<code>length</code> 长度 ，遍历等等），但不能直接调用数组的方法。</p>
+<p>只要满足以下两个特征的对象就是伪数组：</p>
+<p>1.对象是按照索引（0，1，2，3…）的方式存储数据的<br>2.具备一个 <code>length</code> 属性</p>
+<p>常见伪数组：<code>DOM</code> 中的 <code>NodeList</code> 伪数组，以及方法中的 <code>arguments</code> 伪数组对象</p>
+<h5 id="ES5中如何将伪数组转换成数组"><a href="#ES5中如何将伪数组转换成数组" class="headerlink" title="ES5中如何将伪数组转换成数组"></a>ES5中如何将伪数组转换成数组</h5><p>使用ES方法转换 <code>arguments</code> 和 <code>NodeList</code> 伪数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> args = [].slice.call(<span class="built_in">arguments</span>) <span class="comment">// collection</span></span><br><span class="line"><span class="keyword">let</span> imgs = [].slice.call(<span class="built_in">document</span>.querySelectorAll(<span class="string">'img'</span>)) <span class="comment">// NodeList</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="ES6中如何将伪数组转换成数组"><a href="#ES6中如何将伪数组转换成数组" class="headerlink" title="ES6中如何将伪数组转换成数组"></a>ES6中如何将伪数组转换成数组</h5><p>可以使用 <code>Array</code> 构造函数的ES6新增方法 <code>from</code> 进行转换</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>) <span class="comment">// collection</span></span><br><span class="line"><span class="keyword">let</span> imgs = <span class="built_in">Array</span>.from(<span class="built_in">document</span>.querySelectorAll(<span class="string">'img'</span>)) <span class="comment">// NodeList</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="from-使用语法"><a href="#from-使用语法" class="headerlink" title="from 使用语法"></a><code>from</code> 使用语法</h5><p>语法：<code>Array.from(arrayLike, mapFunction, thisArg)</code> 第一个参数为伪数组，第二个参数为遍历函数，第三个参数为 <code>this</code> 对象</p>
+<h6 id="arrayLike-参数作用"><a href="#arrayLike-参数作用" class="headerlink" title="arrayLike 参数作用"></a>arrayLike 参数作用</h6><p>该参数表示一个要被转换成数组的伪数组</p>
+<h6 id="mapFunction-参数作用"><a href="#mapFunction-参数作用" class="headerlink" title="mapFunction 参数作用"></a>mapFunction 参数作用</h6><p>该参数表示对伪数组的遍历，遍历每一项 <code>item</code> 元素并且可以 <code>return</code> 值为元素赋值</p>
+<p>使用小场景：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需求：初始化长度为5并且每个元素的值都为1的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用ES5的方式初始话</span></span><br><span class="line"><span class="keyword">let</span> array = <span class="built_in">Array</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">  array[i] = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(array) <span class="comment">// [1, 1, 1, 1, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用ES6的方式初始化</span></span><br><span class="line"><span class="keyword">let</span> array = <span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">5</span> &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> <span class="comment">// 返回的值将会作为数组元素的值</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(array)</span><br></pre></td></tr></table></figure>
+
+<h6 id="thisArg-参数作用"><a href="#thisArg-参数作用" class="headerlink" title="thisArg 参数作用"></a>thisArg 参数作用</h6><p>该参数表示 <code>mapFunction</code> 中的 <code>this</code> 指向（自己）</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -185,81 +301,146 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES7</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES8</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES9</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ES10</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2021/02/23/nodes/lenings/es6-to-es10/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+    <a href="/2021/03/09/nodes/lenings/rollup-and-webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          rollup和webpack的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/15/nodes/lenings/es6-module-and-build/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6 的模块化使用和开发环境的打包</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/10/nodes/lenings/js-base/" class="archive-article-date">
-  	<time datetime="2019-12-10T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ES6篇"><span class="toc-number">1.</span> <span class="toc-text">ES6篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域"><span class="toc-number">1.1.</span> <span class="toc-text">作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局作用域"><span class="toc-number">1.1.1.</span> <span class="toc-text">全局作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全局作用域解释"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">全局作用域解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何定义全局变量"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">如何定义全局变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数作用域"><span class="toc-number">1.1.2.</span> <span class="toc-text">函数作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数作用域说明"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">函数作用域说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态作用域"><span class="toc-number">1.1.3.</span> <span class="toc-text">动态作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态作用域解释"><span class="toc-number">1.1.4.</span> <span class="toc-text">动态作用域解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块状作用域（ES6新增）"><span class="toc-number">1.1.5.</span> <span class="toc-text">块状作用域（ES6新增）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#历史说明"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">历史说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#块状作用域解释"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">块状作用域解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#let-amp-const-与-var-区别"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">let &amp; const 与 var 区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#let-与-const-区别"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">let 与 const 区别</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#说明"><span class="toc-number">1.1.5.4.1.</span> <span class="toc-text">说明</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.2.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组遍历"><span class="toc-number">1.2.1.</span> <span class="toc-text">数组遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6以前的遍历方法，以及优缺点"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">ES6以前的遍历方法，以及优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-for-循环"><span class="toc-number">1.2.1.1.1.</span> <span class="toc-text">1. for 循环</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-forEach-遍历"><span class="toc-number">1.2.1.1.2.</span> <span class="toc-text">2. forEach 遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-every-遍历"><span class="toc-number">1.2.1.1.3.</span> <span class="toc-text">3. every 遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-for-in-遍历"><span class="toc-number">1.2.1.1.4.</span> <span class="toc-text">4. for in 遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6新增遍历方法"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">ES6新增遍历方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for-of-遍历"><span class="toc-number">1.2.1.2.1.</span> <span class="toc-text">for of 遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#伪数组"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">伪数组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ES5中如何将伪数组转换成数组"><span class="toc-number">1.2.1.3.1.</span> <span class="toc-text">ES5中如何将伪数组转换成数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ES6中如何将伪数组转换成数组"><span class="toc-number">1.2.1.3.2.</span> <span class="toc-text">ES6中如何将伪数组转换成数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#from-使用语法"><span class="toc-number">1.2.1.3.3.</span> <span class="toc-text">from 使用语法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#arrayLike-参数作用"><span class="toc-number">1.2.1.3.3.1.</span> <span class="toc-text">arrayLike 参数作用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#mapFunction-参数作用"><span class="toc-number">1.2.1.3.3.2.</span> <span class="toc-text">mapFunction 参数作用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#thisArg-参数作用"><span class="toc-number">1.2.1.3.3.3.</span> <span class="toc-text">thisArg 参数作用</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/10/nodes/lenings/js-base/">javascript 基础</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -282,9 +463,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>面试基础 | 江麻妞的个人博客</title>
+  <title>javascript 基础 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端面试总结">
-<meta name="keywords" content="面试">
+  <meta name="description" content="js的面试知识记录">
+<meta name="keywords" content="学习笔记,面试,JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试基础">
-<meta property="og:url" content="https://jiangmaniu.github.io/2019/10/10/interview-basis/index.html">
+<meta property="og:title" content="javascript 基础">
+<meta property="og:url" content="https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
-<meta property="og:description" content="前端面试总结">
+<meta property="og:description" content="js的面试知识记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangmaniu.github.io/2019/10/10/interview-basis/blog-imgs/interview-basis-1.png">
-<meta property="og:image" content="https://jiangmaniu.github.io/2019/10/10/interview-basis/blog-imgs/interview-basis-2.png">
-<meta property="og:image" content="https://jiangmaniu.github.io/2019/10/10/interview-basis/blog-imgs/interview-basis-3.png">
-<meta property="og:updated_time" content="2021-02-22T16:33:51.672Z">
+<meta property="og:image" content="https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-1.png">
+<meta property="og:image" content="https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-2.png">
+<meta property="og:image" content="https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-3.png">
+<meta property="og:updated_time" content="2021-03-09T13:50:48.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面试基础">
-<meta name="twitter:description" content="前端面试总结">
-<meta name="twitter:image" content="https://jiangmaniu.github.io/2019/10/10/interview-basis/blog-imgs/interview-basis-1.png">
+<meta name="twitter:title" content="javascript 基础">
+<meta name="twitter:description" content="js的面试知识记录">
+<meta name="twitter:image" content="https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-1.png">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -151,20 +151,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-interview-basis" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-nodes/lenings/js-base" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      面试基础
+      javascript 基础
     </h1>
   
 
         
-        <a href="/2019/10/10/interview-basis/" class="archive-article-date">
-  	<time datetime="2019-10-10T08:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+        <a href="/2019/12/10/nodes/lenings/js-base/" class="archive-article-date">
+  	<time datetime="2019-12-10T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
 </a>
         
       </header>
@@ -184,7 +184,7 @@
 <p>特点：无限制扩展属性（此特点会导致赋值给其他变量时，会多占用很大的内存空间）；共享内存（为了避免第一个特点造成的内存浪费）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quoteA = &#123; <span class="attr">age</span>: <span class="number">20</span> &#125;</span><br><span class="line"><span class="keyword">var</span> quoteB = quoteA</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`初始值：quoteA -&gt;`</span>, quoteA , <span class="string">`quoteB -&gt; `</span>, quoteB)</span><br><span class="line"></span><br><span class="line">quoteA.age = <span class="number">30</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`改变quoteA.age：quoteA -&gt; `</span>, quoteA, <span class="string">`quoteA：quoteB -&gt;`</span>, quoteB)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> quoteC = quoteB</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`定义quoteC：quoteC -&gt; `</span>, quoteC, <span class="string">`quoteB -&gt; `</span>, quoteB, <span class="string">`quoteA -&gt; `</span>, quoteA)</span><br><span class="line"></span><br><span class="line">quoteC.age = <span class="number">40</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`改变quoteC.age：quoteC -&gt; `</span>, quoteC, <span class="string">`quoteB -&gt; `</span>, quoteB, <span class="string">`quoteA -&gt; `</span>, quoteA)</span><br><span class="line"></span><br><span class="line">quoteC.sex = <span class="string">'男'</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`新增quoteC.sex：quoteC -&gt; `</span>, quoteC, <span class="string">`quoteB -&gt; `</span>, quoteB, <span class="string">`quoteA -&gt; `</span>, quoteA)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/10/10/interview-basis/blog-imgs/interview-basis-1.png" alt="图片" title="输出内容"></p>
+<p><img src="/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-1.png" alt="图片" title="输出内容"></p>
 <h3 id="1-2-typeof-操作符"><a href="#1-2-typeof-操作符" class="headerlink" title="1.2 typeof 操作符"></a>1.2 typeof 操作符</h3><p>定义：typeof操作符一共可以检查五种类型（分别是：<code>undefined</code>，<code>string</code>，<code>number</code>，<code>boolean</code>，<code>object</code>，<code>function</code>）</p>
 <p>注意：typeof操作符只能检测<strong>值类型</strong>的详细类型（<code>null</code>除外），引用类型只能区分<code>object</code>（<code>object</code>, <code>array</code>, <code>null</code>）和<code>function</code>。<code>null</code>是特殊情况，<code>null</code>虽然是<strong>值类型</strong>，但typeof操作符会将其检测成<code>object</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof undefined：`</span>, <span class="keyword">typeof</span> <span class="literal">undefined</span>) <span class="comment">// typeof undefined： undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof 'abc'：`</span>, <span class="keyword">typeof</span> <span class="string">'abc'</span>)  <span class="comment">// typeof 'abc'： string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof 123：`</span>, <span class="keyword">typeof</span> <span class="number">123</span>)  <span class="comment">// typeof 123： number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof true：`</span>, <span class="keyword">typeof</span> <span class="literal">true</span>) <span class="comment">// typeof true： boolean</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof &#123;&#125;：`</span>, <span class="keyword">typeof</span> &#123;&#125;) <span class="comment">// typeof &#123;&#125;： object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof []：`</span>, <span class="keyword">typeof</span> [])  <span class="comment">// typeof []： object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof null：`</span>, <span class="keyword">typeof</span> <span class="literal">null</span>) <span class="comment">// typeof null： object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`typeof console.log：`</span>, <span class="keyword">typeof</span> <span class="built_in">console</span>.log) <span class="comment">// typeof console.log： function</span></span><br></pre></td></tr></table></figure>
@@ -260,12 +260,12 @@
 <p>继续上面代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">`obj.__proto__：`</span>, obj.__proto__)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`arr.__proto__：`</span>, arr.__proto__)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`fn.__proto__：`</span>, fn.__proto__)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/10/10/interview-basis/blog-imgs/interview-basis-2.png" alt="图片" title="输出内容"></p>
+<p><img src="/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-2.png" alt="图片" title="输出内容"></p>
 <h4 id="1-7-3-prototype显示原型"><a href="#1-7-3-prototype显示原型" class="headerlink" title="1.7.3 prototype显示原型"></a>1.7.3 <code>prototype</code>显示原型</h4><p>所有函数都有一个prototype（显示原型）属性，属性值也是一个普通对象。</p>
 <p>继续上面代码:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">`fn.prototype；`</span>, fn.prototype)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/10/10/interview-basis/blog-imgs/interview-basis-3.png" alt="图片" title="输出内容"></p>
+<p><img src="/2019/12/10/nodes/lenings/js-base/blog-imgs/interview-basis-3.png" alt="图片" title="输出内容"></p>
 <h4 id="1-7-4-查找原型链"><a href="#1-7-4-查找原型链" class="headerlink" title="1.7.4 查找原型链"></a>1.7.4 查找原型链</h4><p>当视图访问一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的<code>__proto__</code>（即它的构造函数的prototype）中寻找，换句话说它会从原型链向上查找</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.fuName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this指向调用的实例</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"fuName"</span>, <span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo(<span class="string">'jiangmaniu'</span>)</span><br><span class="line">f.ziName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'ziName：'</span>, <span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">f.fuName() <span class="comment">// fuName：jiangmaniu</span></span><br><span class="line">f.ziName() <span class="comment">// ziName：jiangmaniu</span></span><br></pre></td></tr></table></figure>
 
@@ -634,7 +634,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
         		</li>
       		
 		</ul>
@@ -690,7 +698,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2019/10/10/interview-basis/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2019/12/10/nodes/lenings/js-base/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -704,11 +712,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/10/es6-module-and-build/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/09/nodes/lenings/es6-class/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ES6 的模块化使用和开发环境的打包
+          ES6 Class 概念
         
       </div>
     </a>
@@ -841,15 +849,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">API</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -857,7 +861,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -874,6 +878,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ES10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">打包工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">rollup</a>
               </li>
             
             <div class="clearfix"></div>

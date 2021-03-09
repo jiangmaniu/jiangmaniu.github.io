@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>RESTful API | 江麻妞的个人博客</title>
+  <title>Archives: 2020/4 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RESTful API 设计设计理念">
-<meta name="keywords" content="API,后端,学习笔记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="RESTful API">
-<meta property="og:url" content="https://jiangmaniu.github.io/2021/02/18/restful-api/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="江麻妞的个人博客">
+<meta property="og:url" content="https://jiangmaniu.github.io/archives/2020/04/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
-<meta property="og:description" content="RESTful API 设计设计理念">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-03-07T13:58:56.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RESTful API">
-<meta name="twitter:description" content="RESTful API 设计设计理念">
+<meta name="twitter:title" content="江麻妞的个人博客">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -147,283 +142,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-restful-api" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      RESTful API
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/09/nodes/lenings/es6-class/" class="archive-article-date">
+  	<time datetime="2020-04-09T14:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/09/nodes/lenings/es6-class/">ES6 Class 概念</a>
     </h1>
   
 
-        
-        <a href="/2021/02/18/restful-api/" class="archive-article-date">
-  	<time datetime="2021-02-18T08:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是-RESTful-API"><a href="#什么是-RESTful-API" class="headerlink" title="什么是 RESTful API"></a>什么是 RESTful API</h2><p>按照现在的发展趋势，前端设备是千奇百怪的，不管是客户端、手机应用、小程序还是Web应用，不管是完成部分还是整体的功能，都可以从统一的后端里面拿到对应的信息。</p>
-<p>因此必须同一的机制，方便不同的前端应用与后端进行通信，这导致 API 架构非常的流行，RESTful API 是目前比较成熟的一套互联网应用程序的 API 设计理论。</p>
-<a id="more"></a>
-
-<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>尽量将 API 不熟在专用域名下。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com</span><br></pre></td></tr></table></figure>
-
-<p>如果确定 API 比较简单，不会有进一步扩展，可以考虑放在主域名下。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.com/api/</span><br></pre></td></tr></table></figure>
-
-<h2 id="版本（Versioning）"><a href="#版本（Versioning）" class="headerlink" title="版本（Versioning）"></a>版本（Versioning）</h2><p>若同个 API 有多版本，需要 API 请求中添加版本号。</p>
-<p>一般将版本号放入 URL。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com/v1/</span><br></pre></td></tr></table></figure>
-
-<p>另一种做法是，将版本号放在 HTTP 头信息中（缺点是不如放在 URL 方便和直观），<a href="https://developer.github.com/v3/media/#request-specific-version" target="_blank" rel="noopener">Github</a> 采用的就是这种做法。</p>
-<h2 id="路径（Endpoint）"><a href="#路径（Endpoint）" class="headerlink" title="路径（Endpoint）"></a>路径（Endpoint）</h2><p>路径又称“终点”，表示具体的 API 网址。</p>
-<p>在 RESTful API 架构中，每个网址代表一种资源（resource)，所有网址中不能有<strong>动词</strong> ，只能有<strong>名词</strong>，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的“集合”（collection)，所以 API 中的名词也应该使用复数。</p>
-<p>例子；</p>
-<p>有一个 API 提供 NBA 的球队和球队成员的信息，则它的路径应该设计下面这样。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 球队</span><br><span class="line">https://api.example.com/v1/teams</span><br><span class="line">// 球队成员</span><br><span class="line">https://api.example.com/v1/players</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTP-动词"><a href="#HTTP-动词" class="headerlink" title="HTTP 动词"></a>HTTP 动词</h2><p>HTTP 动词表示根据不同操作需求类型，发送对应的 HTTP 请求。</p>
-<p>常用的 HTTP 动词有五个（括号内是对应的 SQL 命令）。</p>
-<ul>
-<li>GET (SELECT)：从服务器取出资源（一项或多项）。</li>
-<li>POST (CREATE)：在服务器新建一个资源。</li>
-<li>PUT (UPDATE)：在服务器更新资源（客户端需提供改变后<strong>完整</strong>的资源）。</li>
-<li>PATCH（UPDATE）：在服务器更新资源（客户端提供<strong>要改变</strong>的资源）。</li>
-<li>DELETE（DELETE）：在服务器删除资源。</li>
-</ul>
-<p>还有两个不常用的 HTTP 动词。</p>
-<ul>
-<li>HEAD：获取资源的元数据。</li>
-<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</li>
-</ul>
-<p>例子：</p>
-<ul>
-<li>GET /teams 列出所有球队</li>
-<li>POST /teams 创建一个球队</li>
-<li>GET /teams/ID 获取某个指定的球队信息</li>
-<li>PUT /teams/ID 更新某个指定的球队信息（需要提供球队<strong>完整</strong>的信息）</li>
-<li>PATCH /teams/ID 更新某个指定的球队信息（需要提供球队<strong>要更改</strong>的信息）</li>
-<li>DELETE /teams/ID 删除某个指定的球队</li>
-<li>GET /teams/ID/players 列出指定球队的所有成员</li>
-<li>DELETE /teams/ID/players/ID 删除指定球队的指定成员</li>
-</ul>
-<h2 id="过滤信息（Filtering）"><a href="#过滤信息（Filtering）" class="headerlink" title="过滤信息（Filtering）"></a>过滤信息（Filtering）</h2><p>如果记录数量很多，服务器不可能都将它们返回给客户端。API 应该提供参数，过滤返回结果</p>
-<p>常见参数：</p>
-<ul>
-<li>?limit=10 指定返回记录的数量</li>
-<li>?offset=10 指定返回记录的起始位置</li>
-<li>?page=2&amp;per_page=100 指定第几页，以及每页的记录数量</li>
-<li>?sortby=name&amp;order&amp;order=aes 指定返回结果按照某个属性排序，以及排序顺序</li>
-</ul>
-<h2 id="状态码（Status-Codes）"><a href="#状态码（Status-Codes）" class="headerlink" title="状态码（Status Codes）"></a>状态码（Status Codes）</h2><p>服务器向用户返回的状态码和提示信息，状态码分为五类：信息响应(100–199)，成功响应(200–299)，重定向(300–399)，客户端错误(400–499)和服务器错误 (500–599)，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
-<ul>
-<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
-<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
-<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
-<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
-<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
-<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</li>
-<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
-<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
-<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
-<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
-<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
-<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</li>
-</ul>
-<p>状态码的完全列表<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status" target="_blank" rel="noopener">参见</a>这里。</p>
-<h2 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h2><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
-<ul>
-<li>GET /collection：返回资源对象的列表（数组）</li>
-<li>GET /collection/resource：返回单个资源对象</li>
-<li>POST /collection：返回新生成的资源对象</li>
-<li>PUT /collection/resource：返回完整的资源对象</li>
-<li>PATCH /collection/resource：返回完整的资源对象</li>
-<li>DELETE /collection/resource：返回一个空文档</li>
-</ul>
-<h2 id="接口文档需要包含的点"><a href="#接口文档需要包含的点" class="headerlink" title="接口文档需要包含的点"></a>接口文档需要包含的点</h2><ul>
-<li>endpoints: 具体路径</li>
-<li>使用怎样的 method</li>
-<li></li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></li>
-</ul>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">API</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2021/02/18/restful-api/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/02/23/es6-to-es10/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ES6 到 ES10 新特性学习
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/10/10/es6-module-and-build/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6 的模块化使用和开发环境的打包</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-RESTful-API"><span class="toc-number">1.</span> <span class="toc-text">什么是 RESTful API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名"><span class="toc-number">2.</span> <span class="toc-text">域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本（Versioning）"><span class="toc-number">3.</span> <span class="toc-text">版本（Versioning）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路径（Endpoint）"><span class="toc-number">4.</span> <span class="toc-text">路径（Endpoint）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-动词"><span class="toc-number">5.</span> <span class="toc-text">HTTP 动词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤信息（Filtering）"><span class="toc-number">6.</span> <span class="toc-text">过滤信息（Filtering）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码（Status-Codes）"><span class="toc-number">7.</span> <span class="toc-text">状态码（Status Codes）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回结果"><span class="toc-number">8.</span> <span class="toc-text">返回结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口文档需要包含的点"><span class="toc-number">9.</span> <span class="toc-text">接口文档需要包含的点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -446,8 +222,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -508,15 +284,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">API</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,7 +296,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +313,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ES10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">打包工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">rollup</a>
               </li>
             
             <div class="clearfix"></div>

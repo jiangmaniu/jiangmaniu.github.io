@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>Tag: 面试 | 江麻妞的个人博客</title>
+  <title>rollup和webpack的区别 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江麻妞的个人博客">
-<meta property="og:url" content="https://jiangmaniu.github.io/tags/面试/index.html">
+  <meta name="description" content="rollup功能单一，webpack功能强大rollup按照单一功能设计原则（功能单一，可继承，可扩展），只做模块化打包功能，除此之外，rollup无法支持其他功能。学习成本极低，容易上手。虽然功能单一，但rollup将模块打包功能做到极致，打包速度非常快，且打包出来的代码将尽可能的压缩。 webpack功能强大，不止能打包模块，还能做很多rollup无法做到的事情，这也导致webpack的学习成">
+<meta name="keywords" content="学习笔记,打包工具,webpack,rollup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rollup和webpack的区别">
+<meta property="og:url" content="https://jiangmaniu.github.io/2021/03/09/nodes/lenings/rollup-and-webpack/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
+<meta property="og:description" content="rollup功能单一，webpack功能强大rollup按照单一功能设计原则（功能单一，可继承，可扩展），只做模块化打包功能，除此之外，rollup无法支持其他功能。学习成本极低，容易上手。虽然功能单一，但rollup将模块打包功能做到极致，打包速度非常快，且打包出来的代码将尽可能的压缩。 webpack功能强大，不止能打包模块，还能做很多rollup无法做到的事情，这也导致webpack的学习成">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-09T15:37:07.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="江麻妞的个人博客">
+<meta name="twitter:title" content="rollup和webpack的区别">
+<meta name="twitter:description" content="rollup功能单一，webpack功能强大rollup按照单一功能设计原则（功能单一，可继承，可扩展），只做模块化打包功能，除此之外，rollup无法支持其他功能。学习成本极低，容易上手。虽然功能单一，但rollup将模块打包功能做到极致，打包速度非常快，且打包出来的代码将尽可能的压缩。 webpack功能强大，不止能打包模块，还能做很多rollup无法做到的事情，这也导致webpack的学习成">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -142,36 +147,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nodes/lenings/rollup-and-webpack" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/15/nodes/lenings/es6-module-and-build/" class="archive-article-date">
-  	<time datetime="2020-10-15T08:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/nodes/lenings/es6-module-and-build/">ES6 的模块化使用和开发环境的打包</a>
+    <h1 class="article-title" itemprop="name">
+      rollup和webpack的区别
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/03/09/nodes/lenings/rollup-and-webpack/" class="archive-article-date">
+  	<time datetime="2021-03-09T12:56:24.165Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rollup功能单一，webpack功能强大"><a href="#rollup功能单一，webpack功能强大" class="headerlink" title="rollup功能单一，webpack功能强大"></a><code>rollup</code>功能单一，<code>webpack</code>功能强大</h2><p><code>rollup</code>按照单一功能设计原则（功能单一，可继承，可扩展），只做模块化打包功能，除此之外，<code>rollup</code>无法支持其他功能。学习成本极低，容易上手。虽然功能单一，但<code>rollup</code>将模块打包功能做到极致，打包速度非常快，且打包出来的代码将尽可能的压缩。</p>
+<p><code>webpack</code>功能强大，不止能打包模块，还能做很多<code>rollup</code>无法做到的事情，这也导致<code>webpack</code>的学习成本很高。</p>
+<h2 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h2><p>如果不是非常必要（项目不大的情况下），可使用<code>gulp</code>，<code>rollup</code>等功能单一，可继承，可扩展工具（配合其他工具使用），小巧灵活。避免使用<code>webpack</code>打包工具。</p>
+<blockquote>
+<p>避免为了使用某种工具而使用某种工具，满足需求即可。</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,85 +211,133 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">打包工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rollup</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2021/03/09/nodes/lenings/rollup-and-webpack/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/23/nodes/lenings/es6-to-es10/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6 到 ES10 新特性学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/10/nodes/lenings/js-base/" class="archive-article-date">
-  	<time datetime="2019-12-10T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rollup功能单一，webpack功能强大"><span class="toc-number">1.</span> <span class="toc-text">rollup功能单一，webpack功能强大</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用原则"><span class="toc-number">2.</span> <span class="toc-text">使用原则</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/10/nodes/lenings/js-base/">javascript 基础</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -282,9 +360,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
