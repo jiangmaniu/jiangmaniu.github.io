@@ -1,9 +1,11 @@
 ---
-title: 面试基础
-date: 2019-10-10 16:42:12
+title: javascript 基础
+date: 2019-12-10 20:42:12
 tags:
+  - JS
   - 面试
-description: 前端面试总结
+  - 学习笔记
+description: js的面试知识记录
 ---
 
 ## 基础篇

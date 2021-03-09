@@ -1,7 +1,7 @@
 ---
   title: ES6 到 ES10 新特性学习
   data: 2020-05-10 14:14:01
-  tags: 
+  tags:
     - ES6
     - ES7
     - ES8
