@@ -144,6 +144,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-nodes/lenings/single -thread-async" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/10/nodes/lenings/single -thread-async/">单线程和异步的关系</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/10/nodes/lenings/single -thread-async/" class="archive-article-date">
+  	<time datetime="2021-03-10T15:51:39.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>单线程顾名思义只有一个线程，同一时间只能做一件事情。但为什么JS是单线程而不是跟java那样多线程呢？因为要避免DOM渲染的冲突，为保证浏览器在渲染节点的同时不能执行JS，如果渲染时JS代码还在执行，刚搞执行的代码在操作要渲染的DOM，这就造成渲染冲突。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子1：循环运行期间，JS 执行和 DOM 渲染会暂时卡顿，直到循环结束</span></span><br><span class="line"><span class="keyword">var</span> i = sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(; i &lt; <span class="number">100000000</span>; i++) &#123;</span><br><span class="line">  sum += i</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2：由于 alert 操作是同步，所以在对话框出来时如果不点击确认</span></span><br><span class="line"><span class="comment">// 则 JS 执行和 DOM 渲染会暂时卡顿，直到点击确认关闭 alert</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">alert(<span class="string">'暂停执行'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'world'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>简单总结：</p>
+<ul>
+<li>浏览器需要渲染DOM</li>
+<li>JS 可以更改DOM结构</li>
+<li>JS 执行的时候，浏览器 DOM 渲染暂停。反之渲染DOM时 JS 暂停执行</li>
+<li>不仅时 JS 和渲染会产生冲突，两端 JS 也不能同时执行，会存在同时修改同个DOM的情况（修改冲突）。</li>
+<li><code>web worker</code> 支持多线程，但<strong>不能</strong>访问DOM</li>
+</ul>
+<h2 id="目前的解决方案：异步"><a href="#目前的解决方案：异步" class="headerlink" title="目前的解决方案：异步"></a>目前的解决方案：异步</h2><p>异步存在的问题：</p>
+<ol>
+<li>没有按照书写方式执行，可读性差</li>
+<li>callback 不容易模块化，容易产生回调炼狱</li>
+</ol>
+<h2 id="事件轮询（event-loop）"><a href="#事件轮询（event-loop）" class="headerlink" title="事件轮询（event-loop）"></a>事件轮询（event-loop）</h2><h3 id="什么是-event-loop"><a href="#什么是-event-loop" class="headerlink" title="什么是 event-loop"></a>什么是 event-loop</h3><p>event-loop 是实现 JS 异步的具体解决方案，</p>
+<p>同步代码，直接在主线程按顺序执行<br>异步函数先放在<strong>异步队列</strong>中<br>待同步函数执行完毕，再来轮询执行异<strong>步队列</strong>的函数，将要执行的函数放会主线程中</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">打包工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rollup</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/10/nodes/lenings/single -thread-async/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-nodes/lenings/rollup-and-webpack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -580,6 +683,104 @@
 
 
   
+    <article id="post-nodes/lenings/zepto-jquery-prototype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/17/nodes/lenings/zepto-jquery-prototype/">zepto 和 jquery 的原型理解</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/17/nodes/lenings/zepto-jquery-prototype/" class="archive-article-date">
+  	<time datetime="2020-03-17T14:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="zepto-的原型的简单实现"><a href="#zepto-的原型的简单实现" class="headerlink" title="zepto 的原型的简单实现"></a>zepto 的原型的简单实现</h2><p>在库外面使用<code>$()</code>语法获取一个或多个元素时，<code>zepto</code> 会将传入的<code>selector</code>字符串找到相应的元素，并将元素的一些信息记录在<code>this</code>中。然后<code>return</code>出<code>zepto</code>的实例，该实例为<code>zepto</code>中的<code>Z</code>构造方法实实例的。<code>Z</code>的构造方法的原型会指向<code>$.fn</code>对象，该对象内实现了<code>zepto</code>的造作方法等。</p>
+<p>相关代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> $p = $(<span class="string">'p'</span>)</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($P.css()) <span class="comment">// css</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($p.html()) <span class="comment">// html</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($p.fn) <span class="comment">// zepto prototype</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> zepto = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Z</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将元素信息保存在实例中</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length = len</span><br><span class="line">    <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  zepto.Z = <span class="function"><span class="keyword">function</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Z(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  zepto.init = <span class="function"><span class="keyword">function</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取 selector 对应的 dom 节点,</span></span><br><span class="line">    <span class="comment">// 由于 node list 是一个伪数组，使用 slice 转一次</span></span><br><span class="line">    <span class="keyword">const</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">    <span class="keyword">const</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line">    <span class="keyword">return</span> zepto.z(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $ = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> zepto.init(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 暴露到全局变量</span></span><br><span class="line">  <span class="built_in">window</span>.$ = $</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加 Z 构造方法的原型</span></span><br><span class="line">  Z.prototype = $.fn = &#123;</span><br><span class="line">    css: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'css'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'html'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="jquery-的原型的简单实现"><a href="#jquery-的原型的简单实现" class="headerlink" title="jquery 的原型的简单实现"></a>jquery 的原型的简单实现</h2><p>由于<code>zepto</code>是借鉴<code>jquery</code>的，所以<code>jquery</code> 的原型实现效果与<code>zepto</code>一致，只是实现的方式有点不一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> jQuery = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init(selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// jquery 原型</span></span><br><span class="line">  jQuery.fn = &#123;</span><br><span class="line">    css: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'css'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> html</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> init = jQuery.fn.init = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">    <span class="keyword">var</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line">    <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length = len || <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加构造方法的原型</span></span><br><span class="line">  init.prototype = jQuery.fn</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 暴露变量</span></span><br><span class="line">  <span class="built_in">window</span>.$ = jQuery</span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="原型的扩展性"><a href="#原型的扩展性" class="headerlink" title="原型的扩展性"></a>原型的扩展性</h2><p>通过上面<code>jquery</code>和<code>zepto</code>的原型的简单实现代码，可发现代码中都有<code>$.fn</code>的属性，并且改属性为构造器的原型方法。就上面代码看，可以完全不需要<code>$.fm</code>这以属性，这是做什么用的呢？因为这样可以实现插件扩展性，由于<code>jquery</code>和<code>zepto</code>都是执行在自执行函数中，这样的好处是避免变量的全局污染问题，只暴露给全局<code>window</code>中的<code>$</code>变量，像<code>init</code>、<code>Z</code>等都是外面可能会出现的变量，如果不在自执行函数中声明，会与其他的同名变量冲突，为了避免，将构造函数的原型绑定在<code>$</code>变量的属性中。这样外面可直接使用<code>$.fn</code>来添加方法（插件），在<code>$.fn</code>中添加的方法在所有实例中都可访问。</p>
+<p>此方法的好处：</p>
+<ol>
+<li>只有<code>$</code>会暴露在<code>window</code>全局变量</li>
+<li>将插件扩展统一到<code>$.fn.xx</code>这一接口，方便使用</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 普通标签节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 引入jquery --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--添加 jquery 插件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 添加 jquery 插件</span></span></span><br><span class="line"><span class="javascript">  $.fn.getNodeName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="keyword">this</span>[<span class="number">0</span>].nodeName</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 验证添加的插件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> dom = $(<span class="string">'p'</span>)</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(dom.getNodeName()) <span class="comment">// p</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">zepto</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/17/nodes/lenings/zepto-jquery-prototype/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-nodes/lenings/js-base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -758,11 +959,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">zepto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">打包工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">rollup</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,26 +1008,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ES10</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">API</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">打包工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">rollup</a>
               </li>
             
             <div class="clearfix"></div>

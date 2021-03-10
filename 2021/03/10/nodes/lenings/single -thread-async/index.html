@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>Archives: 2021/2 | 江麻妞的个人博客</title>
+  <title>单线程和异步的关系 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江麻妞的个人博客">
-<meta property="og:url" content="https://jiangmaniu.github.io/archives/2021/02/index.html">
+  <meta name="description" content="单线程单线程顾名思义只有一个线程，同一时间只能做一件事情。但为什么JS是单线程而不是跟java那样多线程呢？因为要避免DOM渲染的冲突，为保证浏览器在渲染节点的同时不能执行JS，如果渲染时JS代码还在执行，刚搞执行的代码在操作要渲染的DOM，这就造成渲染冲突。 123456789101112// 例子1：循环运行期间，JS 执行和 DOM 渲染会暂时卡顿，直到循环结束var i = sum = 0">
+<meta name="keywords" content="学习笔记,打包工具,webpack,rollup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单线程和异步的关系">
+<meta property="og:url" content="https://jiangmaniu.github.io/2021/03/10/nodes/lenings/single -thread-async/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
+<meta property="og:description" content="单线程单线程顾名思义只有一个线程，同一时间只能做一件事情。但为什么JS是单线程而不是跟java那样多线程呢？因为要避免DOM渲染的冲突，为保证浏览器在渲染节点的同时不能执行JS，如果渲染时JS代码还在执行，刚搞执行的代码在操作要渲染的DOM，这就造成渲染冲突。 123456789101112// 例子1：循环运行期间，JS 执行和 DOM 渲染会暂时卡顿，直到循环结束var i = sum = 0">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-10T15:54:36.885Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="江麻妞的个人博客">
+<meta name="twitter:title" content="单线程和异步的关系">
+<meta name="twitter:description" content="单线程单线程顾名思义只有一个线程，同一时间只能做一件事情。但为什么JS是单线程而不是跟java那样多线程呢？因为要避免DOM渲染的冲突，为保证浏览器在渲染节点的同时不能执行JS，如果渲染时JS代码还在执行，刚搞执行的代码在操作要渲染的DOM，这就造成渲染冲突。 123456789101112// 例子1：循环运行期间，JS 执行和 DOM 渲染会暂时卡顿，直到循环结束var i = sum = 0">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -142,36 +147,73 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nodes/lenings/single -thread-async" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/23/nodes/lenings/es6-to-es10/" class="archive-article-date">
-  	<time datetime="2021-02-22T16:33:51.670Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/23/nodes/lenings/es6-to-es10/">ES6 到 ES10 新特性学习</a>
+    <h1 class="article-title" itemprop="name">
+      单线程和异步的关系
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/03/10/nodes/lenings/single -thread-async/" class="archive-article-date">
+  	<time datetime="2021-03-10T15:51:39.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>单线程顾名思义只有一个线程，同一时间只能做一件事情。但为什么JS是单线程而不是跟java那样多线程呢？因为要避免DOM渲染的冲突，为保证浏览器在渲染节点的同时不能执行JS，如果渲染时JS代码还在执行，刚搞执行的代码在操作要渲染的DOM，这就造成渲染冲突。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子1：循环运行期间，JS 执行和 DOM 渲染会暂时卡顿，直到循环结束</span></span><br><span class="line"><span class="keyword">var</span> i = sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(; i &lt; <span class="number">100000000</span>; i++) &#123;</span><br><span class="line">  sum += i</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2：由于 alert 操作是同步，所以在对话框出来时如果不点击确认</span></span><br><span class="line"><span class="comment">// 则 JS 执行和 DOM 渲染会暂时卡顿，直到点击确认关闭 alert</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">alert(<span class="string">'暂停执行'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'world'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>简单总结：</p>
+<ul>
+<li>浏览器需要渲染DOM</li>
+<li>JS 可以更改DOM结构</li>
+<li>JS 执行的时候，浏览器 DOM 渲染暂停。反之渲染DOM时 JS 暂停执行</li>
+<li>不仅时 JS 和渲染会产生冲突，两端 JS 也不能同时执行，会存在同时修改同个DOM的情况（修改冲突）。</li>
+<li><code>web worker</code> 支持多线程，但<strong>不能</strong>访问DOM</li>
+</ul>
+<h2 id="目前的解决方案：异步"><a href="#目前的解决方案：异步" class="headerlink" title="目前的解决方案：异步"></a>目前的解决方案：异步</h2><p>异步存在的问题：</p>
+<ol>
+<li>没有按照书写方式执行，可读性差</li>
+<li>callback 不容易模块化，容易产生回调炼狱</li>
+</ol>
+<h2 id="事件轮询（event-loop）"><a href="#事件轮询（event-loop）" class="headerlink" title="事件轮询（event-loop）"></a>事件轮询（event-loop）</h2><h3 id="什么是-event-loop"><a href="#什么是-event-loop" class="headerlink" title="什么是 event-loop"></a>什么是 event-loop</h3><p>event-loop 是实现 JS 异步的具体解决方案，</p>
+<p>同步代码，直接在主线程按顺序执行<br>异步函数先放在<strong>异步队列</strong>中<br>待同步函数执行完毕，再来轮询执行异<strong>步队列</strong>的函数，将要执行的函数放会主线程中</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,41 +223,133 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">打包工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES7</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES9</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ES10</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rollup</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2021/03/10/nodes/lenings/single -thread-async/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/03/09/nodes/lenings/rollup-and-webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">rollup和webpack的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单线程"><span class="toc-number">1.</span> <span class="toc-text">单线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目前的解决方案：异步"><span class="toc-number">2.</span> <span class="toc-text">目前的解决方案：异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件轮询（event-loop）"><span class="toc-number">3.</span> <span class="toc-text">事件轮询（event-loop）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是-event-loop"><span class="toc-number">3.1.</span> <span class="toc-text">什么是 event-loop</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

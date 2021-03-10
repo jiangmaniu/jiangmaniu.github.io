@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jiangmaniu.github.io">
-  <title>Archives: 2021/2 | 江麻妞的个人博客</title>
+  <title>zepto 和 jquery 的原型理解 | 江麻妞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="江麻妞的个人博客">
-<meta property="og:url" content="https://jiangmaniu.github.io/archives/2021/02/index.html">
+  <meta name="description" content="zepto 的原型的简单实现在库外面使用$()语法获取一个或多个元素时，zepto 会将传入的selector字符串找到相应的元素，并将元素的一些信息记录在this中。然后return出zepto的实例，该实例为zepto中的Z构造方法实实例的。Z的构造方法的原型会指向$.fn对象，该对象内实现了zepto的造作方法等。 相关代码： 1234567&amp;lt;p&amp;gt;123&amp;lt;/p&amp;gt;&amp;lt">
+<meta name="keywords" content="学习笔记,zepto,jquery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zepto 和 jquery 的原型理解">
+<meta property="og:url" content="https://jiangmaniu.github.io/2020/03/17/nodes/lenings/zepto-jquery-prototype/index.html">
 <meta property="og:site_name" content="江麻妞的个人博客">
+<meta property="og:description" content="zepto 的原型的简单实现在库外面使用$()语法获取一个或多个元素时，zepto 会将传入的selector字符串找到相应的元素，并将元素的一些信息记录在this中。然后return出zepto的实例，该实例为zepto中的Z构造方法实实例的。Z的构造方法的原型会指向$.fn对象，该对象内实现了zepto的造作方法等。 相关代码： 1234567&amp;lt;p&amp;gt;123&amp;lt;/p&amp;gt;&amp;lt">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-10T15:53:18.573Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="江麻妞的个人博客">
+<meta name="twitter:title" content="zepto 和 jquery 的原型理解">
+<meta name="twitter:description" content="zepto 的原型的简单实现在库外面使用$()语法获取一个或多个元素时，zepto 会将传入的selector字符串找到相应的元素，并将元素的一些信息记录在this中。然后return出zepto的实例，该实例为zepto中的Z构造方法实实例的。Z的构造方法的原型会指向$.fn对象，该对象内实现了zepto的造作方法等。 相关代码： 1234567&amp;lt;p&amp;gt;123&amp;lt;/p&amp;gt;&amp;lt">
   
     <link rel="alternative" href="/atom.xml" title="江麻妞的个人博客" type="application/atom+xml">
   
@@ -142,36 +147,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nodes/lenings/zepto-jquery-prototype" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/23/nodes/lenings/es6-to-es10/" class="archive-article-date">
-  	<time datetime="2021-02-22T16:33:51.670Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/23/nodes/lenings/es6-to-es10/">ES6 到 ES10 新特性学习</a>
+    <h1 class="article-title" itemprop="name">
+      zepto 和 jquery 的原型理解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/17/nodes/lenings/zepto-jquery-prototype/" class="archive-article-date">
+  	<time datetime="2020-03-17T14:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="zepto-的原型的简单实现"><a href="#zepto-的原型的简单实现" class="headerlink" title="zepto 的原型的简单实现"></a>zepto 的原型的简单实现</h2><p>在库外面使用<code>$()</code>语法获取一个或多个元素时，<code>zepto</code> 会将传入的<code>selector</code>字符串找到相应的元素，并将元素的一些信息记录在<code>this</code>中。然后<code>return</code>出<code>zepto</code>的实例，该实例为<code>zepto</code>中的<code>Z</code>构造方法实实例的。<code>Z</code>的构造方法的原型会指向<code>$.fn</code>对象，该对象内实现了<code>zepto</code>的造作方法等。</p>
+<p>相关代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> $p = $(<span class="string">'p'</span>)</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($P.css()) <span class="comment">// css</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($p.html()) <span class="comment">// html</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log($p.fn) <span class="comment">// zepto prototype</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> zepto = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Z</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将元素信息保存在实例中</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length = len</span><br><span class="line">    <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  zepto.Z = <span class="function"><span class="keyword">function</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Z(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  zepto.init = <span class="function"><span class="keyword">function</span> (<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取 selector 对应的 dom 节点,</span></span><br><span class="line">    <span class="comment">// 由于 node list 是一个伪数组，使用 slice 转一次</span></span><br><span class="line">    <span class="keyword">const</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">    <span class="keyword">const</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line">    <span class="keyword">return</span> zepto.z(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $ = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> zepto.init(dom, selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 暴露到全局变量</span></span><br><span class="line">  <span class="built_in">window</span>.$ = $</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加 Z 构造方法的原型</span></span><br><span class="line">  Z.prototype = $.fn = &#123;</span><br><span class="line">    css: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'css'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'html'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="jquery-的原型的简单实现"><a href="#jquery-的原型的简单实现" class="headerlink" title="jquery 的原型的简单实现"></a>jquery 的原型的简单实现</h2><p>由于<code>zepto</code>是借鉴<code>jquery</code>的，所以<code>jquery</code> 的原型实现效果与<code>zepto</code>一致，只是实现的方式有点不一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> jQuery = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init(selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// jquery 原型</span></span><br><span class="line">  jQuery.fn = &#123;</span><br><span class="line">    css: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'css'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> html</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> init = jQuery.fn.init = <span class="function"><span class="keyword">function</span> (<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">    <span class="keyword">var</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line">    <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length = len || <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加构造方法的原型</span></span><br><span class="line">  init.prototype = jQuery.fn</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 暴露变量</span></span><br><span class="line">  <span class="built_in">window</span>.$ = jQuery</span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="原型的扩展性"><a href="#原型的扩展性" class="headerlink" title="原型的扩展性"></a>原型的扩展性</h2><p>通过上面<code>jquery</code>和<code>zepto</code>的原型的简单实现代码，可发现代码中都有<code>$.fn</code>的属性，并且改属性为构造器的原型方法。就上面代码看，可以完全不需要<code>$.fm</code>这以属性，这是做什么用的呢？因为这样可以实现插件扩展性，由于<code>jquery</code>和<code>zepto</code>都是执行在自执行函数中，这样的好处是避免变量的全局污染问题，只暴露给全局<code>window</code>中的<code>$</code>变量，像<code>init</code>、<code>Z</code>等都是外面可能会出现的变量，如果不在自执行函数中声明，会与其他的同名变量冲突，为了避免，将构造函数的原型绑定在<code>$</code>变量的属性中。这样外面可直接使用<code>$.fn</code>来添加方法（插件），在<code>$.fn</code>中添加的方法在所有实例中都可访问。</p>
+<p>此方法的好处：</p>
+<ol>
+<li>只有<code>$</code>会暴露在<code>window</code>全局变量</li>
+<li>将插件扩展统一到<code>$.fn.xx</code>这一接口，方便使用</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 普通标签节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 引入jquery --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--添加 jquery 插件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 添加 jquery 插件</span></span></span><br><span class="line"><span class="javascript">  $.fn.getNodeName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="keyword">this</span>[<span class="number">0</span>].nodeName</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 验证添加的插件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> dom = $(<span class="string">'p'</span>)</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(dom.getNodeName()) <span class="comment">// p</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,41 +222,138 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">zepto</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES7</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES9</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ES10</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jiangmaniu.github.io/2020/03/17/nodes/lenings/zepto-jquery-prototype/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/09/nodes/lenings/es6-class/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ES6 Class 概念
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/12/10/nodes/lenings/js-base/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript 基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zepto-的原型的简单实现"><span class="toc-number">1.</span> <span class="toc-text">zepto 的原型的简单实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery-的原型的简单实现"><span class="toc-number">2.</span> <span class="toc-text">jquery 的原型的简单实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型的扩展性"><span class="toc-number">3.</span> <span class="toc-text">原型的扩展性</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
